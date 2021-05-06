@@ -14,7 +14,6 @@ class RunMethod(object):
 
     def post_main(self, url, data, header=None):
         res = None
-        print(header)
         if header:
             res = requests.post(url=url, json=data, headers=header, verify=False)
         else:
@@ -41,19 +40,29 @@ class RunMethod(object):
 
 
 if __name__ == '__main__':
-    url = "http://10.1.23.245:9221/tpdotnet/pos/webapi/process-barcode"
-    data = {
-        "clientname":"Android-ZL",
-        "clientId":"webapi",
-        "Workflow":"process-barcode",
-        "lOperatorID":"8888",
-        "szSignOnName":"8888",
-        "szEmplName": "IT Support",
-        "InputString":"10000001",
-        "Ta":"TRANS_B2507E36-11D9-4DA3-AEB6-8AD846D471D2"
-    }
-    header = {'Content-Type': 'application/json'}
+    # url = "http://10.1.23.245:9221/tpdotnet/pos/webapi/process-barcode"
+    # data = {
+    #     "clientname":"Android-ZL",
+    #     "clientId":"webapi",
+    #     "Workflow":"process-barcode",
+    #     "lOperatorID":"8888",
+    #     "szSignOnName":"8888",
+    #     "szEmplName": "IT Support",
+    #     "InputString":"10000001",
+    #     "Ta":"TRANS_B2507E36-11D9-4DA3-AEB6-8AD846D471D2"
+    # }
+    # header = {'Content-Type': 'application/json'}
+    #
+    # run = RunMethod()
+    # res = run.run_main(method="post", url=url, data=data, header=header)
+    # print(res)
 
+    url = 'https://api.jisuapi.com/tangshi/search'
+    data = {
+        "appkey":"c7b87e5afc5fc3b0",
+        "keyword":"白日"
+    }
     run = RunMethod()
-    res = run.run_main(method="post", url=url, data=data, header=header)
-    print(res)
+    # res = run.run_main("get", url, data)
+    res = requests.get(url=url, params=data)
+    print(res.json())
