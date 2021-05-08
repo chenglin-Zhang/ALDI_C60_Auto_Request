@@ -26,16 +26,16 @@ class RunTest:
         for i in range(1, rows_count):
             is_run = self.data.get_is_run(i)
             if is_run:
+                case_id = self.data.get_request_case(i)
+                case_name = self.data.get_request_name(i)
+                print(f"{case_id}-{case_name}")
                 url = self.data.get_request_url(i)
                 method = self.data.get_request_method(i)
                 request_data = self.data.get_request_data(i)
                 expect = self.data.get_expcet_data(i)
-                print(expect)
                 header = self.data.is_header(i)
 
                 res = self.run_method.run_main(method, url, request_data)
-                print(res)
-
                 if expect != None:
                     if self.com_util.is_contain(expect, res):
                         pass_count.append(i)

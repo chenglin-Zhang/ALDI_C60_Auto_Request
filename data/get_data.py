@@ -37,6 +37,21 @@ class GetData:
             return header
         else:
             return None
+    
+    def get_request_case(self, row):
+        col = self.global_val.get_id()
+        request_case = self.opera_excel.get_cell_value(row, col)
+        return request_case
+
+    def get_request_name(self, row):
+        '''
+        获取请求模块标题
+        :param row: 行号
+        :return:
+        '''
+        col = int(self.global_val.get_request_name())
+        request_name = self.opera_excel.get_cell_value(row, col)
+        return request_name
 
     def get_request_method(self, row):
         """
