@@ -57,3 +57,12 @@ print str.split(' ', 1 ); # 以空格为分隔符，分隔成两个
 for (k,v) in zip(k_list, v_list)
 ```
 
+
+
+git
+
+```
+cd ~/.ssh 进入ssh目录
+cat id_rsa.pub 查看公钥
+```
+
