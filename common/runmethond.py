@@ -10,7 +10,7 @@ class RunMethod(object):
             res = requests.get(url=url, params=data, headers=header, verify=False)
         else:
             res = requests.get(url=url, params=data)
-        return res.text
+        return res.json()
 
     def post_main(self, url, data, header=None):
         res = None

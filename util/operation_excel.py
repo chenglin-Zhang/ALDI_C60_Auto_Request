@@ -1,4 +1,5 @@
 import xlrd
+import os
 # from xlutils.copy import copy
 
 
@@ -10,7 +11,9 @@ class OperationExcel:
             self.file_name = file_name
             self.sheet_id = sheet_id
         else:
-            self.file_name = r'D:\lin\PyCharm\Project\auto_api\dataconfig\case1.xls'
+            base_path = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+            file_path = os.path.join(base_path, "dataconfig\case1.xls")
+            self.file_name = file_path
             self.sheet_id = 0
         self.data = self.get_data()
 

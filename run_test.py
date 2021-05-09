@@ -5,6 +5,7 @@ from util.common_util import CommonUtil
 # from util.send_email import SendEmail
 # from util.operation_header import OperationHeader
 from util.operation_json import OperationJson
+from util.operation_depend import OperationDepend
 
 
 class RunTest:
@@ -13,6 +14,9 @@ class RunTest:
         self.run_method = RunMethod()
         self.data = GetData()
         self.com_util = CommonUtil()
+        self.operation_json = OperationJson()
+        self.operation_depend = OperationDepend()
+
         # self.send_email = SendEmail()
 
     def go_on_run(self):
@@ -34,10 +38,16 @@ class RunTest:
                 request_data = self.data.get_request_data(i)
                 expect = self.data.get_expcet_data(i)
                 header = self.data.is_header(i)
+                depend_field = self.data.get_depend_field(i)
+                depend_key = self.data.get_depend_key(i)
+                depend_case = self.data.is_depend(i)
+                if depend_case:
+                    self.operation_depend.get_depend_data(depend_case, depend_key, depend_field, request_data)
 
                 res = self.run_method.run_main(method, url, request_data)
                 if expect != None:
                     if self.com_util.is_contain(expect, res):
+                        self.operation_json.write_data(case_id, res)
                         pass_count.append(i)
                     else:
                         fail_count.append(i)
