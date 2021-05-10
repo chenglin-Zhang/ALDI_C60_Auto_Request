@@ -42,8 +42,7 @@ class RunTest:
                 depend_key = self.data.get_depend_key(i)
                 depend_case = self.data.is_depend(i)
                 if depend_case:
-                    self.operation_depend.get_depend_data(depend_case, depend_key, depend_field, request_data)
-
+                    request_data = self.operation_depend.get_depend_data(depend_case, depend_key, depend_field, request_data)
                 res = self.run_method.run_main(method, url, request_data)
                 if expect != None:
                     if self.com_util.is_contain(expect, res):

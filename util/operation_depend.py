@@ -43,7 +43,7 @@ class OperationDepend(object):
         depend_key_list = depend_key.split()
         depend_field_list = depend_field.split()
 
-        data = self.operation_json.get_data(case_case)
+        data = self.operation_json.read_data()[case_case]
         data = eval(data)
         for (depend_key, depend_field) in zip(depend_key_list, depend_field_list):
             res = self.get_recursively(data, depend_key)
