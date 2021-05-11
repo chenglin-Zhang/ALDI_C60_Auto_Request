@@ -1,11 +1,10 @@
 import xlrd
 import os
-# from xlutils.copy import copy
+from xlutils.copy import copy
 
 
 class OperationExcel:
     """操作excel"""
-
     def __init__(self, file_name=None, sheet_id=None):
         if file_name:
             self.file_name = file_name
@@ -45,19 +44,19 @@ class OperationExcel:
         cell = tables.cell_value(row, col)
         return cell
 
-    # def write_value(self, row, col, value):
-    #     """
-    #     回写数据到excel
-    #     :param row:行
-    #     :param col:列
-    #     :param value:值
-    #     :return:
-    #     """
-    #     read_data = xlrd.open_workbook(self.file_name)
-    #     write_data = copy(read_data)
-    #     sheet_data = write_data.get_sheet(0)
-    #     sheet_data.write(row, col, value)
-    #     write_data.save(self.file_name)
+    def write_value(self, row, col, value):
+        """
+        回写数据到excel
+        :param row:行
+        :param col:列
+        :param value:值
+        :return:
+        """
+        read_data = xlrd.open_workbook(self.file_name)
+        write_data = copy(read_data)
+        sheet_data = write_data.get_sheet(0)
+        sheet_data.write(row, col, value)
+        write_data.save(self.file_name)
 
     def get_row_data(self, case_id):
         """

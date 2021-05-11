@@ -41,14 +41,20 @@ class RunTest:
                 depend_field = self.data.get_depend_field(i)
                 depend_key = self.data.get_depend_key(i)
                 depend_case = self.data.is_depend(i)
+
+                # 判断是否存在依赖
                 if depend_case:
                     request_data = self.operation_depend.get_depend_data(depend_case, depend_key, depend_field, request_data)
+
                 res = self.run_method.run_main(method, url, request_data)
                 if expect != None:
                     if self.com_util.is_contain(expect, res):
                         self.operation_json.write_data(case_id, res)
+                        self.data.write_result(i, "Pass")
                         pass_count.append(i)
                     else:
+                        self.data.write_result(i, "Fail")
+                        self.data.write_result_error(i, res)
                         fail_count.append(i)
                 else:
                     print(f"用例ID：case-{i}，预期结果不能为空")

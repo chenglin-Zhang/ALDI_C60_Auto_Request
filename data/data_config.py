@@ -12,6 +12,7 @@ class Global_Val(object):
     data = "9"
     expect = "10"
     result = "11"
+    result_error = "12"
 
     def get_id(slef):
         return slef.id
@@ -48,3 +49,6 @@ class Global_Val(object):
 
     def get_result(self):
         return self.result
+
+    def get_result_error(self):
+        return self.result_error

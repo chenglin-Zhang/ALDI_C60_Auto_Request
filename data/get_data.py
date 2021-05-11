@@ -110,15 +110,25 @@ class GetData:
         else:
             return expect
 
-    # def write_result(self, row, value):
-    #     """
-    #     写入结果数据
-    #     :param row:
-    #     :param col:
-    #     :return:
-    #     """
-    #     col = int(self.global_val.get_result())
-    #     self.opera_excel.write_value(row, col, value)
+    def write_result(self, row, value):
+        """
+        写入结果数据
+        :param row:
+        :param col:
+        :return:
+        """
+        col = int(self.global_val.get_result())
+        self.opera_excel.write_value(row, col, value)
+
+    def write_result_error(self, row, value):
+        """
+        写入结果数据
+        :param row:
+        :param col:
+        :return:
+        """
+        col = int(self.global_val.get_result_error())
+        self.opera_excel.write_value(row, col, value)
 
     def get_depend_key(self, row):
         """
