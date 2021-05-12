@@ -1,6 +1,8 @@
 import xlrd
 import os
 from xlutils.copy import copy
+import shutil
+import datetime
 
 
 class OperationExcel:
@@ -10,11 +12,15 @@ class OperationExcel:
             self.file_name = file_name
             self.sheet_id = sheet_id
         else:
+            now = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
             base_path = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-            file_path = os.path.join(base_path, "dataconfig\case1.xls")
-            self.file_name = file_path
+            base_file_path = os.path.join(base_path, "dataconfig\case1.xls")
+            report_file_path = os.path.join(base_path, "report" + f"\\repot_{now}.xls")
+            shutil.copyfile(base_file_path, report_file_path)
+            self.file_name = report_file_path
             self.sheet_id = 0
         self.data = self.get_data()
+
 
     def get_data(self):
         """
