@@ -46,7 +46,7 @@ class RunTest:
                 if depend_case:
                     request_data = self.operation_depend.get_depend_data(depend_case, depend_key, depend_field, request_data)
 
-                res = self.run_method.run_main(method, url, request_data)
+                res = self.run_method.run_main(method, url, request_data, header)
                 if expect != None:
                     if self.com_util.is_contain(expect, res):
                         self.operation_json.write_data(case_id, res)

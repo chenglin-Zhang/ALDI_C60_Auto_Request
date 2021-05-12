@@ -82,7 +82,8 @@ class GetData:
         """
         col = int(self.global_val.get_data())
         data = self.opera_excel.get_cell_value(row, col)
-        data = json.loads(data)
+        if type(data) == dict:
+            data = json.loads(data)
         if data == '':
             return None
         return data

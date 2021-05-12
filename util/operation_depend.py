@@ -45,7 +45,9 @@ class OperationDepend(object):
 
         data = self.operation_json.read_data()[case_case]
         data = eval(data)
+        request_data = json.loads(request_data)
         for (depend_key, depend_field) in zip(depend_key_list, depend_field_list):
             res = self.get_recursively(data, depend_key)
+
             request_data[depend_field] = res[0]
         return request_data
